@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Droner</title>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+<button class="connect">Connect</button>
+<button class="disconnect" disabled="disabled">Disconnect</button>
+<ul id="panel">
+	<li id="status">Status: Disconnected</li>
+	<li id="name">Device Name: --</li>
+	<li id="battery"><span id="battery_level">Battery Level: --</span><div id="battery_bg"></div></li>
+</ul>
+
+<ul id="stats">
+	<li id="x">X: 0</li>
+	<li id="y">Y: 0</li>
+	<li id="z">Z: 0</li>
+	<br>
+	<li id="rot_slow">Rotation (Slow): 0 deg</li>
+	<li id="rot_fast">Rotation (Fast): 0 deg</li>
+</ul>
+<div class="info">
+	<h1>Command History</h1>
+	<div id="debug"></div>
+	<div class="inner"></div>
+</div>
+
+<script type="text/javascript">
+var drone,
+	is_flying = false,
+	user_action = "",
+	comm_count = 0;
+
+var keys_down = [];
+</script>
+<script type="text/javascript" src="js/jquery-latest.min.js"></script>
+<script type="text/javascript" src="js/drone.js"></script>
+<script type="text/javascript" src="js/core.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Droner</title>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+<div class="container_small">
+	<button class="connect">Connect</button>
+	<button class="disconnect" disabled="disabled">Disconnect</button>
+	<button class="routine">Routine</button>
+</div>
+
+<div class="container">
+	<label for="flip">Flip Type:</label>
+	<select id="flip" name="flip">
+		<option value="0" selected="selected">Front</option>
+		<option value="1">Back</option>
+		<option value="2">Right</option>
+		<option value="3">Left</option>
+	</select>
+	
+	<ul id="panel">
+		<li id="status">Status: Disconnected</li>
+		<li id="name">Device Name: --</li>
+		<li id="battery"><span id="battery_level">Battery Level: --</span><div id="battery_bg"></div></li>
+	</ul>
+
+	<ul id="stats">
+		<li id="x">X: 0</li>
+		<li id="y">Y: 0</li>
+		<li id="z">Z: 0</li>
+		<br>
+		<li id="rot_slow">Rotation (Slow): 0 deg</li>
+		<li id="rot_fast">Rotation (Fast): 0 deg</li>
+	</ul>
+	<div class="info">
+		<h1>Command History</h1>
+		<div id="debug"></div>
+		<div class="inner"></div>
+	</div>
+</div>
+<script type="text/javascript">
+var drone,
+	is_flying = false,
+	user_action = "",
+	comm_count = 0;
+
+var keys_down = [];
+
+var recording = [],
+	start = Date.now();
+
+function switcheroo(the_action) {
+	switch(rec[i][1]) {
+		case "rotateLeft":
+			drone.applyRotateLeft();
+			break;
+		case "forward":
+			drone.applyForward();
+			break;
+		case "rotateRight":
+			drone.applyRotateRight();
+			break;
+		case "backward":
+			drone.applyBackward();
+			break;
+
+		case "r_rotateLeft":
+			drone.removeRotateLeft();
+			break;
+		case "r_forward":
+			drone.removeForward();
+			break;
+		case "r_rotateRight":
+			drone.removeRotateRight();
+			break;
+		case "r_backward":
+			drone.removeBackward();
+			break;
+	}
+}
+function playBack(rec) {
+	for(i=0;i<rec.length;i++) {
+		setTimeout(
+			switcheroo,
+			rec[i][2],
+			rec[i][1]
+		);
+	}
+}
+</script>
+<script type="text/javascript" src="js/jquery-latest.min.js"></script>
+<script type="text/javascript" src="js/drone.js"></script>
+<script type="text/javascript" src="js/core.js"></script>
+</body>
+
+</html>
